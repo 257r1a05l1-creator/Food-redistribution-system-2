@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>FoodBridge | Redistribution Dashboard</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">🍲</div>
+      <div><b>FoodBridge</b><span>Food Redistribution</span></div>
+    </div>
+
+    <nav class="side-nav">
+      <a class="active" href="#dashboard">▦ <span>Dashboard</span></a>
+      <a href="#donations">▣ <span>Donations</span></a>
+      <a href="#add">＋ <span>Add Donation</span></a>
+      <a href="#partners">♧ <span>NGO Partners</span></a>
+      <a href="#alerts">⚠ <span>Alerts</span></a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div>B.Tech Mini Project</div>
+      <div>Food Redistribution System</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Dashboard</h1>
+        <p>Manage food donations and redistribution easily.</p>
+      </div>
+      <button class="primary" onclick="document.getElementById('add').scrollIntoView({behavior:'smooth'})">＋ Add Donation</button>
+    </header>
+
+    <section id="dashboard" class="cards">
+      <div class="stat-card">
+        <div class="label">Total Donations</div>
+        <div class="number">24</div>
+        <div class="hint">Active food listings</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Available Food</div>
+        <div class="number orange">8</div>
+        <div class="hint">Waiting for pickup</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Meals Distributed</div>
+        <div class="number green">1,240</div>
+        <div class="hint">Successfully delivered</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Expired</div>
+        <div class="number red">3</div>
+        <div class="hint">Need attention</div>
+      </div>
+    </section>
+
+    <section id="donations" class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Recent Donations</h2>
+          <p>Latest food donations in your network</p>
+        </div>
+        <button class="text-btn" onclick="showAll()">View all →</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>FOOD ITEM</th><th>DONOR</th><th>QUANTITY</th><th>PICKUP</th><th>TYPE</th><th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody id="donationRows">
+            <tr><td><b>Vegetable Biryani</b></td><td>Green Leaf Restaurant</td><td>80 plates</td><td>30 Sep 2026</td><td><span class="pill yellow">Meals</span></td><td><span class="pill green">Available</span></td></tr>
+            <tr><td><b>Fresh Bread & Buns</b></td><td>Daily Bake</td><td>45 packs</td><td>30 Sep 2026</td><td><span class="pill purple">Bakery</span></td><td><span class="pill orange">Pickup Soon</span></td></tr>
+            <tr><td><b>Fresh Vegetables</b></td><td>City Market</td><td>32 kg</td><td>01 Oct 2026</td><td><span class="pill blue">Produce</span></td><td><span class="pill green">Available</span></td></tr>
+            <tr><td><b>Dal & Rice Meals</b></td><td>Community Kitchen</td><td>120 servings</td><td>01 Oct 2026</td><td><span class="pill yellow">Meals</span></td><td><span class="pill green">Available</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="bottom-grid">
+      <section id="add" class="panel form-panel">
+        <div class="panel-head">
+          <div><h2>Add Donation</h2><p>Create a new food listing</p></div>
+        </div>
+        <form id="donationForm" onsubmit="addDonation(event)">
+          <div class="field"><label>Food name</label><input id="foodName" required placeholder="e.g. Rice & Curry"></div>
+          <div class="form-row">
+            <div class="field"><label>Quantity</label><input id="qty" required placeholder="e.g. 50 meals"></div>
+            <div class="field"><label>Food type</label><select id="type"><option>Meals</option><option>Bakery</option><option>Produce</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Pickup date</label><input id="date" type="date" required></div>
+            <div class="field"><label>Donor name</label><input id="donor" required placeholder="Restaurant / Person"></div>
+          </div>
+          <button class="primary wide">Publish Donation</button>
+          <div id="message"></div>
+        </form>
+      </section>
+
+      <section id="partners" class="panel impact">
+        <div class="panel-head">
+          <div><h2>Community Impact</h2><p>This month's redistribution</p></div>
+        </div>
+        <div class="impact-stat"><span>🍽️</span><div><b>1,240</b><small>Meals reached people</small></div></div>
+        <div class="impact-stat"><span>♻️</span><div><b>385 kg</b><small>Food waste prevented</small></div></div>
+        <div class="impact-stat"><span>🤝</span><div><b>18</b><small>Active NGO partners</small></div></div>
+      </section>
+    </div>
+
+    <section id="alerts" class="alerts panel">
+      <div><div><h2>Alerts</h2><p>Items requiring attention</p></div></div>
+      <div class="alert-row"><span class="alert-icon red-bg">!</span><div><b>3 donations need urgent pickup</b><small>Food should be collected before expiry.</small></div><button class="small-btn">Review</button></div>
+      <div class="alert-row"><span class="alert-icon orange-bg">!</span><div><b>2 NGO requests are waiting</b><small>New requests are available for matching.</small></div><button class="small-btn">View</button></div>
+    </section>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
